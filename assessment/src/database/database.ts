@@ -21,19 +21,20 @@ export class Database implements IDatabase {
 
 	public getPasswords(query: GetPasswordsQuery): Password[] {
 		const { username, website, id } = query;
-
-		if (id) {
-			return this.passwords.filter((password) => password.id === id);
-		}
+		let passwords = this.passwords;
 
 		if (username) {
-			return this.passwords.filter(
+			passwords = passwords.filter(
 				(password) => password.username === username
 			);
 		}
 
 		if (website) {
-			return this.passwords.filter((password) => password.website === website);
+			passwords = passwords.filter((password) => password.website === website);
+		}
+
+		if (id) {
+			passwords = passwords.filter((password) => password.id === id);
 		}
 
 		return this.passwords;
