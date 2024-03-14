@@ -5,12 +5,6 @@ import { GetPasswordsQuery, Password, Todo } from "../shared/types";
  */
 export interface IDatabase {
 	/**
-	 * Retrieves all todos from the database.
-	 * @returns An array of Todo objects.
-	 */
-	getTodos(): Todo[];
-
-	/**
 	 * Retrieves all passwords from the database.
 	 * @returns An array of Password objects.
 	 */
@@ -35,12 +29,6 @@ export interface IDatabase {
 	 * @param id The id of the password to delete.
 	 */
 	deletePassword(id: string): void;
-
-	/**
-	 * Creates a new todo in the database.
-	 * @param newTodo The new todo to be created.
-	 */
-	createTodo(newTodo: Todo): void;
 
 	/**
 	 * Creates a new password in the database.

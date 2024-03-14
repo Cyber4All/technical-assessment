@@ -4,7 +4,6 @@ import { IDatabase } from "./idatabase";
 export class Database implements IDatabase {
 	private static _instance: IDatabase;
 
-	private todos: Todo[] = [];
 	private passwords: Password[] = [];
 
 	public static getInstance(): IDatabase {
@@ -13,10 +12,6 @@ export class Database implements IDatabase {
 		}
 
 		return this._instance;
-	}
-
-	public getTodos(): Todo[] {
-		return this.todos;
 	}
 
 	public getPasswords(query: GetPasswordsQuery): Password[] {
@@ -38,10 +33,6 @@ export class Database implements IDatabase {
 		}
 
 		return this.passwords;
-	}
-
-	public createTodo(newTodo: Todo): void {
-		this.todos.push(newTodo);
 	}
 
 	public createPassword(newPassword: Password): void {
