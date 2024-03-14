@@ -2,6 +2,9 @@
  * Represents the configuration for environment variables.
  */
 export class EnvConfig {
+	public static PORT = "PORT";
+	public static ENC_KEY = "ENC_KEY";
+
 	private static vars: Map<string, string>;
 
 	/**
@@ -17,6 +20,7 @@ export class EnvConfig {
 	 */
 	private static loadEnv() {
 		this.vars.set("PORT", process.env.PORT || "3000");
+		this.vars.set("ENC_KEY", process.env.ENC_KEY || "mysercret");
 	}
 
 	/**

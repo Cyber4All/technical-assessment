@@ -1,4 +1,4 @@
-import { Password, Todo } from "../shared/types";
+import { GetPasswordsQuery, Password, Todo } from "../shared/types";
 
 /**
  * Represents a database interface.
@@ -14,7 +14,27 @@ export interface IDatabase {
 	 * Retrieves all passwords from the database.
 	 * @returns An array of Password objects.
 	 */
-	getPasswords(filters: any): Password[];
+	getPasswords(query: GetPasswordsQuery): Password[];
+
+	/**
+	 * Retrieves a password from the database.
+	 * @param id The id of the password to retrieve.
+	 * @returns The Password object.
+	 */
+	getPassword(id: string): Password | undefined;
+
+	/**
+	 * Updates a password in the database.
+	 * @param id The id of the password to update.
+	 * @param updates The updates to apply to the password.
+	 */
+	updatePassword(updatedPassword: Password): void;
+
+	/**
+	 * Deletes a password from the database.
+	 * @param id The id of the password to delete.
+	 */
+	deletePassword(id: string): void;
 
 	/**
 	 * Creates a new todo in the database.
