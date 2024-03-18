@@ -17,11 +17,7 @@ export class PasswordManagerComponent {
 	public getPasswords(query: GetPasswordsQuery): Password[] {
 		// Get the passwords
 		const passwords = this.database.getPasswords(query);
-		// Decrypt the passwords
-		return passwords.map((password) => ({
-			...password,
-			password: EncryptService.decryptPassword(password.password),
-		}));
+		return passwords;
 	}
 
 	public createPassword(newPassword: Partial<Password>): string {
@@ -38,12 +34,7 @@ export class PasswordManagerComponent {
 				"Username is required"
 			);
 		}
-		if (!newPassword.website) {
-			throw new ServiceError(
-				ServiceErrorType.BAD_REQUEST,
-				"Website is required"
-			);
-		}
+
 		// Encrypt the new password
 		const encrypted = EncryptService.encryptPassword(newPassword.password);
 
@@ -55,7 +46,8 @@ export class PasswordManagerComponent {
 			password: encrypted,
 		});
 
-		return newPassword.id;
+		console.log(encrypted);
+		return newPassword.username;
 	}
 
 	public updatePassword(id: string, updates: Partial<Password>) {
@@ -75,7 +67,7 @@ export class PasswordManagerComponent {
 
 		// Encrypt the updated password
 		if (updates.password) {
-			password.password = EncryptService.encryptPassword(updates.password);
+			password.password = password.password;
 		}
 		// Apply updates
 		if (updates.username) {
@@ -90,9 +82,6 @@ export class PasswordManagerComponent {
 	}
 
 	public deletePassword(id: string) {
-		if (!this.database.getPassword(id)) {
-			throw new ServiceError(ServiceErrorType.NOT_FOUND, "Password not found");
-		}
 		// Delete the password
 		this.database.deletePassword(id);
 	}

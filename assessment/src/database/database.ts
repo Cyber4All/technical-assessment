@@ -1,4 +1,5 @@
-import { GetPasswordsQuery, Password, Todo } from "../shared/types";
+import { EncryptService } from "../config/encrypt";
+import { GetPasswordsQuery, Password } from "../shared/types";
 import { IDatabase } from "./idatabase";
 
 export class Database implements IDatabase {
@@ -6,12 +7,26 @@ export class Database implements IDatabase {
 
 	private passwords: Password[] = [];
 
-	public static getInstance(): IDatabase {
-		if (!this._instance) {
-			this._instance = new Database();
+	private constructor() {
+		// Load in passwords from json file
+		const passwords = require("../../passwords/passwords.json");
+		for (const password of passwords["savedPasswords"]) {
+			// Encrypt the password
+			const encrypted = EncryptService.encryptPassword(password.password);
+			password.password = encrypted;
+			this.passwords.push(password);
 		}
+		console.log(this.passwords);
+	}
 
-		return this._instance;
+	/**
+	 * Initializes the database using the singleton design pattern.
+	 * More information about the singleton design pattern can be found at:
+	 * https://en.wikipedia.org/wiki/Singleton_pattern
+	 * @returns The instance of the database.
+	 */
+	public static getInstance(): IDatabase {
+		return new Database();
 	}
 
 	public getPasswords(query: GetPasswordsQuery): Password[] {
@@ -26,10 +41,6 @@ export class Database implements IDatabase {
 
 		if (website) {
 			passwords = passwords.filter((password) => password.website === website);
-		}
-
-		if (id) {
-			passwords = passwords.filter((password) => password.id === id);
 		}
 
 		return this.passwords;

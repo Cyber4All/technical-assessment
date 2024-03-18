@@ -2,6 +2,11 @@ import * as crypto from "crypto";
 import { EnvConfig } from "./env";
 
 export class EncryptService {
+	/**
+	 * Encrypts a password using AES-256-CBC
+	 * @param password The password to encrypt
+	 * @returns The encrypted password with the IV appended to it
+	 */
 	public static encryptPassword(password: string): string {
 		const key = EnvConfig.get(EnvConfig.ENC_KEY);
 		const iv = crypto.randomBytes(16);
@@ -12,6 +17,11 @@ export class EncryptService {
 		return `${encrypted}:${iv.toString("hex")}`;
 	}
 
+	/**
+	 * Decrypts an encrypted password
+	 * @param encrypted The encrypted password with the IV appended to it
+	 * @returns The decrypted password
+	 */
 	public static decryptPassword(encrypted: string): string {
 		const key = EnvConfig.get(EnvConfig.ENC_KEY);
 		const [password, iv] = encrypted.split(":");

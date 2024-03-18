@@ -1,6 +1,6 @@
 # Practice API Documentation
 
-This documentation outlines the practice routes for the Passwords and Todos modules. These routes are designed for your technical assessment.
+This documentation outlines the practice routes for the Passwords manager module. These routes are designed for your technical assessment.
 
 ## Passwords Module
 
@@ -95,7 +95,11 @@ Passwords are encrypted before being stored in the database.
   }
   ```
 
-The API should validate the request body to ensure that all required fields are present. Any missing fields should result in a 400 Bad Request response.
+If the ID for the password (from the URL param) does not exist, the API should return a 404 Not Found response.
+
+The API will validate that the request body does not have ID which is not allowed to be updated. Each of the three updates are optional. If the request body does not have any of the three fields, the API should return a 400 Bad Request response.
+
+If the password is in the update request, the API should encrypt the password before updating the password in the database.
 
 #### Response:
 
@@ -114,56 +118,3 @@ Delete an existing password from the password manager.
 - **204 No Content**: Successful deletion of password.
 
 If the password with the specified id does not exist, the API should return a 404 Not Found response.
-
-## Todos Module
-
-### 1. Get Todos
-
-#### Endpoint: `GET /todos`
-
-#### Description:
-
-Retrieve a list of todos from the todo manager.
-
-#### Response:
-
-- **200 OK**: Successful retrieval of todos.
-  ```json
-  [
-  	{
-  		"id": 1,
-  		"title": "Buy groceries",
-  		"completed": false
-  	}
-  	// Additional todo objects
-  ]
-  ```
-
-### 2. Add Todo
-
-#### Endpoint: `POST /todos`
-
-#### Description:
-
-Add a new todo to the todo manager.
-
-#### Request:
-
-- **Body**: Todo object
-  ```json
-  {
-  	"title": "Buy groceries",
-  	"completed": false
-  }
-  ```
-
-#### Response:
-
-- **201 Created**: Successful addition of todo.
-  ```json
-  {
-  	"id": 1,
-  	"title": "Buy groceries",
-  	"completed": false
-  }
-  ```
