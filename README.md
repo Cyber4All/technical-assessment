@@ -14,6 +14,7 @@ Good luck!
   - [Application Summary](#application-summary)
     - [Folder Structure](#folder-structure)
     - [Database Schema](#database-schema)
+  - [Getting Started](#getting-started)
 
 ## Assessment Criteria
 
@@ -86,3 +87,17 @@ Below is how Passwords are stored in the database:
 | username | string | The username of the password    |
 | password | string | The password                    |
 | website  | string | The website the password is for |
+
+## Getting Started
+
+We recommend first starting the application by running the following commands:
+
+```bash
+npm install
+```
+
+```bash
+npm run start
+```
+
+This will install all the dependencies and start the application. Once the application is started, you can use Postman to test the application.
