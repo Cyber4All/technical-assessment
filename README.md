@@ -95,8 +95,12 @@ We recommend first starting the application by running the following commands:
 npm install
 ```
 
+This installs all the dependencies for the application.
+
 ```bash
 npm run start
 ```
 
-This will install all the dependencies and start the application. Once the application is started, you can use Postman to test the application.
+This starts the application.
+
+We recommend using Postman to test the application; however feel free to use any API testing tool that you are comfortable with.
