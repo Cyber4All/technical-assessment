@@ -28,7 +28,6 @@ Below is what you'll need to install on your computer to get started with this a
 
 - [Visual Studio Code - Or some other text editor](https://code.visualstudio.com/)
 - [NodeJS](https://nodejs.org/)
-- [Postman](https://www.postman.com/)
 
 ## Development Log
 
