@@ -20,7 +20,7 @@ Good luck!
 
 In order to complete this assessment, we ask that you attempt to find all the bugs that are in the project and fix them. You will find the documentation/requirements for the project in the [documentation](assessment/documentation/README.md) folder. This is where you will find all the requirements for the project. Use this to help you understand what the project is supposed to do and how it is supposed to work.
 
-The purpose of this assessment is to test your ability to find and fix bugs as well as being able to understand and work with a codebase that you are not familiar with. We are not looking for all the bugs to be fixed, but we are looking for you to find as many as you can, explain them, and fix them. We are also looking for you to be able to understand the requirements and implement them as well.
+The purpose of this assessment is to test your ability to find and fix bugs as well as being able to understand and work with a codebase that you are not familiar with. We are not looking for all the bugs to be found and fixed, but we are looking for you to find as many as you can, explain them, and fix them to the best of your ability. We are also looking for you to be able to understand the requirements and implement them as well.
 
 ## Installation Requirements
 
